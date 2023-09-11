@@ -16,6 +16,12 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "React-bascis/Cart.tsx",
+    "React-bascis/NavBar.tsx",
+    "React-bascis/services",
+    "React-bascis/hooks"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
