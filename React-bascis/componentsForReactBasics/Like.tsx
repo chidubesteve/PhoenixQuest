@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 
 interface Props {
