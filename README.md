@@ -26,7 +26,13 @@ PhoenixQuest is a demo clone of the RAWG.io platform, allowing users to discover
 
 ## Installation
 
+Before you begin, ensure you have the following requirements:
+
+- Node.js 16 or higher installed
+- Basic knowledge of React and TypeScript
+
 Follow these steps to set up PhoenixQuest locally:
+
 
 1. Clone the repository:
 
