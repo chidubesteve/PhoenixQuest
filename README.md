@@ -76,4 +76,5 @@ Contributions to PhoenixQuest are welcome! Here's how you can contribute:
 
 This project is licensed under the [MIT License](LICENSE).
 
-
+###Supporting
+Made with ❤ by me. Give this repo a star if you find it inspirational
