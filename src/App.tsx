@@ -5,10 +5,12 @@ import { useState } from "react";
 import GenreLists from "./components/GenreLists";
 import DisplayOptions from "./components/DisplayOptions";
 import StackedView from "./components/StackedView";
+import { Genre } from "./hooks/useGenres";
 
 const App = () => {
   // const [viewMode, setViewMode] = useState<"grid" | "stacked">("grid");
 
+    const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null)
   // // Callback function to handle view mode change
   // const handleViewModeChange = (mode) => {
   //   setViewMode(mode);
@@ -28,11 +30,11 @@ const App = () => {
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" >
-          <GenreLists />
+          <GenreLists onSelectGenre={(genre) => setSelectedGenre(genre)}/>
         </GridItem>
       </Show>
       <GridItem area="main">
-        <GameGrid />
+        <GameGrid selectedGenre={selectedGenre}/>
 
         {/* {viewMode === "grid" ? <GameGrid /> : <StackedView />} */}
       </GridItem>
