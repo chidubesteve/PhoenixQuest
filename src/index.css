@@ -1,3 +1,18 @@
 body {
     padding: 20px;
 }
+
+  
+  *::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 24px;
+    border: none;
+  }

@@ -1,7 +1,10 @@
 import { HStack, IconButton, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { BsFillGridFill, BsViewStacked } from "react-icons/bs";
 
+interface Props {
+  children: ReactNode;
+}
 
 const DisplayOptions = () => {
   const [viewMode, setViewMode] = useState<"grid" | "stacked">("grid");
