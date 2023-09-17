@@ -1,20 +1,18 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import GenreLists from "./components/GenreLists";
-import DisplayOptions from "./components/DisplayOptions";
 import StackedView from "./components/StackedView";
 import { Genre } from "./hooks/useGenres";
+import PlatformSelector from "./components/PlatformSelector";
+import DisplayOptions from "./components/DisplayOptions";
+
+export type ViewMode = "GameGrid" | "StackedView";
 
 const App = () => {
-  // const [viewMode, setViewMode] = useState<"grid" | "stacked">("grid");
-
-    const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null)
-  // // Callback function to handle view mode change
-  // const handleViewModeChange = (mode) => {
-  //   setViewMode(mode);
-  // };
+ 
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
   return (
     <Grid
@@ -22,21 +20,30 @@ const App = () => {
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`,
       }}
-      templateColumns={{base: '1fr',
-    lg: '200px 1fr'}}
+      templateColumns={{ base: "1fr", lg: "200px 1fr" }}
     >
       <GridItem area="nav">
         <NavBar />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" >
-          <GenreLists selectedGenre={selectedGenre} onSelectGenre={(genre) => setSelectedGenre(genre)}/>
+        <GridItem area="aside">
+          <GenreLists
+            selectedGenre={selectedGenre}
+            onSelectGenre={(genre) => setSelectedGenre(genre)}
+          />
         </GridItem>
       </Show>
       <GridItem area="main">
-        <GameGrid selectedGenre={selectedGenre}/>
-
-        {/* {viewMode === "grid" ? <GameGrid /> : <StackedView />} */}
+      <HStack justifyContent="space-between">
+        <PlatformSelector />
+        <Show above= 'lg'>
+          <Box mr={2}>
+            <DisplayOptions />
+          </Box>
+        </Show>
+        </HStack>
+      <GameGrid selectedGenre={selectedGenre} />
+      
       </GridItem>
     </Grid>
   );
