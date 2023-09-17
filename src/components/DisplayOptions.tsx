@@ -1,21 +1,13 @@
 import { HStack, IconButton, Text } from "@chakra-ui/react";
-import { ReactNode, useState } from "react";
 import { BsFillGridFill, BsViewStacked } from "react-icons/bs";
 
 interface Props {
-  children: ReactNode;
+  onSelectDisplayOption: (cols: number | { sm: number; md: number; lg: number; xl: number }) => void;
 }
 
-const DisplayOptions = () => {
-  const [viewMode, setViewMode] = useState<"grid" | "stacked">("grid");
 
-  const handleGridViewClick = () => {
-    setViewMode("grid");
-  };
+const DisplayOptions = ({onSelectDisplayOption}: Props) => {
 
-  const handleStackViewClick = () => {
-    setViewMode("stacked");
-  };
 
   return (
     <HStack>
@@ -28,7 +20,7 @@ const DisplayOptions = () => {
         aria-label="Grid View"
         fontSize="20px"
         icon={<BsFillGridFill />}
-        onClick={handleGridViewClick}
+        onClick={() => onSelectDisplayOption({ sm: 1, md: 2, lg: 3, xl: 4 })}
       />
       <IconButton
         variant="outline"
@@ -36,7 +28,7 @@ const DisplayOptions = () => {
         aria-label="Stack View"
         fontSize="20px"
         icon={<BsViewStacked />}
-        onClick={handleStackViewClick}
+        onClick={() => onSelectDisplayOption(1)}
        
       />
       

@@ -3,17 +3,25 @@ import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import { ReactNode, useState } from "react";
 import GenreLists from "./components/GenreLists";
-import StackedView from "./components/StackedView";
 import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import DisplayOptions from "./components/DisplayOptions";
 
-export type ViewMode = "GameGrid" | "StackedView";
-
+type Cols = number | { sm: number; md: number; lg: number; xl: number }
 const App = () => {
- 
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
+ 
+  const [noOfCols, setNoOfCols] = useState<Cols>();
+
+  const handleSelectDisplayOption = (cols: Cols) => {
+    if (typeof cols === 'number') {
+      setNoOfCols(cols);
+    } else { 
+      setNoOfCols({ sm: 1, md: 2, lg: 3, xl: 4 });
+    }
+  };
+  // Determine the width based on the noOfCols
   return (
     <Grid
       templateAreas={{
@@ -34,15 +42,15 @@ const App = () => {
         </GridItem>
       </Show>
       <GridItem area="main">
-      <HStack justifyContent="space-between">
+      <HStack justifyContent="space-between" pl='7px'>
         <PlatformSelector />
         <Show above= 'lg'>
           <Box mr={2}>
-            <DisplayOptions />
+            <DisplayOptions onSelectDisplayOption={handleSelectDisplayOption}/>
           </Box>
         </Show>
         </HStack>
-      <GameGrid selectedGenre={selectedGenre} />
+      <GameGrid selectedGenre={selectedGenre} columns={noOfCols} />
       
       </GridItem>
     </Grid>
