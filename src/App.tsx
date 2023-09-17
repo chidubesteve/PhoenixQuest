@@ -6,18 +6,20 @@ import GenreLists from "./components/GenreLists";
 import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import DisplayOptions from "./components/DisplayOptions";
+import { Platform } from "./hooks/useGames";
 
-type Cols = number | { sm: number; md: number; lg: number; xl: number }
+type Cols = number | { sm: number; md: number; lg: number; xl: number };
 const App = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
- 
   const [noOfCols, setNoOfCols] = useState<Cols>();
-
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null
+  );
   const handleSelectDisplayOption = (cols: Cols) => {
-    if (typeof cols === 'number') {
+    if (typeof cols === "number") {
       setNoOfCols(cols);
-    } else { 
+    } else {
       setNoOfCols({ sm: 1, md: 2, lg: 3, xl: 4 });
     }
   };
@@ -42,16 +44,24 @@ const App = () => {
         </GridItem>
       </Show>
       <GridItem area="main">
-      <HStack justifyContent="space-between" pl='7px'>
-        <PlatformSelector />
-        <Show above= 'lg'>
-          <Box mr={2}>
-            <DisplayOptions onSelectDisplayOption={handleSelectDisplayOption}/>
-          </Box>
-        </Show>
+        <HStack justifyContent="space-between" pl="7px">
+          <PlatformSelector
+            selectedPlatform={selectedPlatform}
+            onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+          />
+          <Show above="lg">
+            <Box mr={2}>
+              <DisplayOptions
+                onSelectDisplayOption={handleSelectDisplayOption}
+              />
+            </Box>
+          </Show>
         </HStack>
-      <GameGrid selectedGenre={selectedGenre} columns={noOfCols} />
-      
+        <GameGrid
+          selectedGenre={selectedGenre}
+          selectedPlatform={selectedPlatform}
+          columns={noOfCols}
+        />
       </GridItem>
     </Grid>
   );
