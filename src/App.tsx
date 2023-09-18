@@ -35,7 +35,7 @@ const App = () => {
       }}
       templateColumns={{ base: "1fr", lg: "200px 1fr" }}
     >
-      <GridItem area="nav">
+      <GridItem area="nav" mb={2}>
         <NavBar />
       </GridItem>
       <Show above="lg">
@@ -49,7 +49,7 @@ const App = () => {
       <GridItem area="main">
         <HStack justifyContent="space-between" pl="7px">
 
-          <HStack spacing={5} mb={5} pl={2}>
+          <HStack spacing={5} mb={2} pl={2}>
             <PlatformSelector
               selectedPlatform={selectedPlatform}
               onSelectPlatform={(platform) => setSelectedPlatform(platform)}
