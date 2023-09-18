@@ -7,6 +7,7 @@ import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import DisplayOptions from "./components/DisplayOptions";
 import { Platform } from "./hooks/useGames";
+import SortSelector from "./components/SortSelector";
 
 type Cols = number | { sm: number; md: number; lg: number; xl: number };
 const App = () => {
@@ -45,12 +46,16 @@ const App = () => {
       </Show>
       <GridItem area="main">
         <HStack justifyContent="space-between" pl="7px">
-          <PlatformSelector
-            selectedPlatform={selectedPlatform}
-            onSelectPlatform={(platform) => setSelectedPlatform(platform)}
-          />
+
+          <HStack spacing={5} mb={5} pl={2}>
+            <PlatformSelector
+              selectedPlatform={selectedPlatform}
+              onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+            />
+            <SortSelector />
+          </HStack>
           <Show above="lg">
-            <Box mr={2}>
+            <Box mr={2} mb={2}>
               <DisplayOptions
                 onSelectDisplayOption={handleSelectDisplayOption}
               />
