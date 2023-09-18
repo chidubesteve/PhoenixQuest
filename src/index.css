@@ -16,3 +16,6 @@ body {
     border-radius: 24px;
     border: none;
   }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: grey;
+  }

@@ -36,7 +36,7 @@ const App = () => {
         <NavBar />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside">
+        <GridItem area="aside" height="650px" overflowY='scroll'>
           <GenreLists
             selectedGenre={selectedGenre}
             onSelectGenre={(genre) => setSelectedGenre(genre)}
