@@ -1,11 +1,11 @@
-import React from 'react'
 import { Platform } from '../hooks/useGames'
 import {FaWindows, FaLinux, FaXbox, FaPlaystation, FaApple, FaAndroid} from 'react-icons/fa'
 import {MdPhoneIphone} from 'react-icons/md'
-import {SiNintendo} from 'react-icons/si'
+import {SiAtari, SiNintendo, SiSega} from 'react-icons/si'
 import { BsGlobe } from 'react-icons/bs'
 import { HStack, Icon } from '@chakra-ui/react'
 import { IconType } from 'react-icons/lib'
+import {GiGameConsole}  from  'react-icons/gi'
 
 interface Props {
     platforms : Platform[]
@@ -22,6 +22,9 @@ const PlatformIconsList = ({platforms}: Props) => {
         android: FaAndroid,
         web: BsGlobe,
         ios: MdPhoneIphone,
+        atari: SiAtari,
+        sega: SiSega,
+        'commodore-amiga' : GiGameConsole
         
       }
   return (

@@ -1,7 +1,7 @@
 import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import GenreLists from "./components/GenreLists";
 import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
@@ -13,10 +13,12 @@ type Cols = number | { sm: number; md: number; lg: number; xl: number };
 const App = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
-  const [noOfCols, setNoOfCols] = useState<Cols>();
+  const [noOfCols, setNoOfCols] = useState<Cols>({ sm: 1, md: 2, lg: 3, xl: 4 });
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
     null
   );
+    const [sortOrder, setSortOrder] = useState('')
+
   const handleSelectDisplayOption = (cols: Cols) => {
     if (typeof cols === "number") {
       setNoOfCols(cols);
@@ -24,7 +26,7 @@ const App = () => {
       setNoOfCols({ sm: 1, md: 2, lg: 3, xl: 4 });
     }
   };
-  // Determine the width based on the noOfCols
+  
   return (
     <Grid
       templateAreas={{
@@ -52,7 +54,7 @@ const App = () => {
               selectedPlatform={selectedPlatform}
               onSelectPlatform={(platform) => setSelectedPlatform(platform)}
             />
-            <SortSelector />
+            <SortSelector sortOrder={sortOrder} onSelectSortOrder={(sortOrder) => setSortOrder(sortOrder)}/>
           </HStack>
           <Show above="lg">
             <Box mr={2} mb={2}>
@@ -66,6 +68,7 @@ const App = () => {
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
           columns={noOfCols}
+          sortOrder={sortOrder}
         />
       </GridItem>
     </Grid>
