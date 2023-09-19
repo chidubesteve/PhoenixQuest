@@ -3,7 +3,9 @@ The ultimate game discovery app built with React18, Typescript (Rawg.io clone)
 
 ---
 
-PhoenixQuest is a demo clone of the RAWG.io platform, allowing users to discover and explore various games. This project is built using TypeScript, React 18, Chakra UI, React Icons, and Vite, and it leverages the RAWG API to fetch game data. With features like filtering, searching, and more, PhoenixQuest provides an engaging gaming experience. The repo also contains a folder `React-basics` which contains files and components that will teach you the basics of React18, you can render them in the `App.tsx` by copying the commented code i n`App-demo.tsx` and pasting it 
+![Phoenix Quest - Google Chrome 19_09_2023 05_46_56](https://github.com/chidubesteve/PhoenixQuest/assets/117487194/20aed740-43db-4531-b6a6-4d690623fba0)
+
+PhoenixQuest is a demo clone of the RAWG.io platform, allowing users to discover and explore various games. This project is built using TypeScript, React 18, Chakra UI, React Icons, and Vite, and it leverages the RAWG API to fetch game data. With features like filtering, searching, and more, PhoenixQuest provides an engaging gaming experience. The repo also contains a folder `React-basics` which contains files and components that will teach you the basics of React18, you can render them in the `App.tsx` by copying the commented code in`App-demo.tsx` and pasting it 
 
 ## Table of Contents
 
@@ -79,4 +81,4 @@ This project is licensed under the [MIT License](LICENSE).
 ### Supporting
 If this project has been helpful in any way, please consider supporting me by giving this repo a ⭐ and following me 
 [Twitter](https://twitter.com/chidubesteve)
-[LinkedIn] (https://www.linkedin.com/in/chidube-anike-7a7721251/)
+[LinkedIn](https://www.linkedin.com/in/chidube-anike-7a7721251)
