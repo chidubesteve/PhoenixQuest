@@ -8,10 +8,19 @@ import PlatformSelector from "./components/PlatformSelector";
 import DisplayOptions from "./components/DisplayOptions";
 import { Platform } from "./hooks/useGames";
 import SortSelector from "./components/SortSelector";
+import GameHeading from "./components/GameHeading";
+
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+  sortOrder:  string;
+  searchText: string;
+}
 
 type Cols = number | { sm: number; md: number; lg: number; xl: number };
 const App = () => {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery)
+
 
   const [noOfCols, setNoOfCols] = useState<Cols>({
     sm: 1,
@@ -19,11 +28,8 @@ const App = () => {
     lg: 3,
     xl: 4,
   });
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null
-  );
-  const [sortOrder, setSortOrder] = useState("");
-  const [searchText, setSearchText] = useState('');
+
+
   const handleSelectDisplayOption = (cols: Cols) => {
     if (typeof cols === "number") {
       setNoOfCols(cols);
@@ -41,42 +47,43 @@ const App = () => {
       templateColumns={{ base: "1fr", lg: "200px 1fr" }}
     >
       <GridItem area="nav" mb={2}>
-        <NavBar onSearch={(searchText) => setSearchText(searchText)} />
+        <NavBar onSearch={(searchText) => setGameQuery({...gameQuery, searchText})} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" height="650px" overflowY="scroll">
           <GenreLists
-            selectedGenre={selectedGenre}
-            onSelectGenre={(genre) => setSelectedGenre(genre)}
+            selectedGenre={gameQuery.genre}
+            onSelectGenre={(genre) => setGameQuery({...gameQuery, genre})}
           />
         </GridItem>
       </Show>
-      <GridItem area="main">
-        <HStack justifyContent="space-between" pl="7px">
-          <HStack spacing={5} mb={2} pl={2}>
-            <PlatformSelector
-              selectedPlatform={selectedPlatform}
-              onSelectPlatform={(platform) => setSelectedPlatform(platform)}
-            />
-            <SortSelector
-              sortOrder={sortOrder}
-              onSelectSortOrder={(sortOrder) => setSortOrder(sortOrder)}
-            />
-          </HStack>
-          <Show above="lg">
-            <Box mr={2} mb={2}>
-              <DisplayOptions
-                onSelectDisplayOption={handleSelectDisplayOption}
+      <GridItem area="main" >
+        <Box px={3}>
+          <GameHeading gameQuery={gameQuery}/>
+          <HStack justifyContent="space-between" >
+            <HStack spacing={5} mb={2} >
+              <PlatformSelector
+                selectedPlatform={gameQuery.platform}
+                onSelectPlatform={(platform) => setGameQuery({...gameQuery, platform})}
               />
-            </Box>
-          </Show>
-        </HStack>
+              <SortSelector
+                sortOrder={gameQuery.sortOrder}
+                onSelectSortOrder={(sortOrder) => setGameQuery({...gameQuery, sortOrder})}
+              />
+            </HStack>
+            <Show above="lg">
+              <Box mr={2} mb={2}>
+                <DisplayOptions
+                  onSelectDisplayOption={handleSelectDisplayOption}
+                />
+              </Box>
+            </Show>
+          </HStack>
+        </Box>
         <GameGrid
-          selectedGenre={selectedGenre}
-          selectedPlatform={selectedPlatform}
+          gameQuery={gameQuery}
           columns={noOfCols}
-          sortOrder={sortOrder}
-          searchText={searchText}
+         
         />
       </GridItem>
     </Grid>

@@ -1,3 +1,4 @@
+import { GameQuery } from "../App";
 import useData from "./useData";
 import { Genre } from "./useGenres";
 
@@ -15,15 +16,12 @@ export interface Game {
 }
 // build an interface for the response schema => gotten generically now
 
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null,
-  sortOrder: string,
-  searchText: string | null,
+ const useGames = (
+gameQuery: GameQuery
 ) =>
   useData<Game>(
     "/games",
-    { params: { genres: selectedGenre?.id, parent_platforms: selectedPlatform?.id, ordering: sortOrder, search: searchText } },
-    [selectedGenre?.id, selectedPlatform?.id, searchText, sortOrder ]
+    { params: { genres: gameQuery.genre?.id, parent_platforms: gameQuery.platform?.id, ordering: gameQuery.sortOrder, search: gameQuery.searchText } },
+    [gameQuery]
   );
 export default useGames;
