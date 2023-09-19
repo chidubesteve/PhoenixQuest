@@ -13,12 +13,17 @@ type Cols = number | { sm: number; md: number; lg: number; xl: number };
 const App = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
-  const [noOfCols, setNoOfCols] = useState<Cols>({ sm: 1, md: 2, lg: 3, xl: 4 });
+  const [noOfCols, setNoOfCols] = useState<Cols>({
+    sm: 1,
+    md: 2,
+    lg: 3,
+    xl: 4,
+  });
   const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
     null
   );
-    const [sortOrder, setSortOrder] = useState('')
-
+  const [sortOrder, setSortOrder] = useState("");
+  const [searchText, setSearchText] = useState('');
   const handleSelectDisplayOption = (cols: Cols) => {
     if (typeof cols === "number") {
       setNoOfCols(cols);
@@ -26,7 +31,7 @@ const App = () => {
       setNoOfCols({ sm: 1, md: 2, lg: 3, xl: 4 });
     }
   };
-  
+
   return (
     <Grid
       templateAreas={{
@@ -36,10 +41,10 @@ const App = () => {
       templateColumns={{ base: "1fr", lg: "200px 1fr" }}
     >
       <GridItem area="nav" mb={2}>
-        <NavBar />
+        <NavBar onSearch={(searchText) => setSearchText(searchText)} />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" height="650px" overflowY='scroll'>
+        <GridItem area="aside" height="650px" overflowY="scroll">
           <GenreLists
             selectedGenre={selectedGenre}
             onSelectGenre={(genre) => setSelectedGenre(genre)}
@@ -48,13 +53,15 @@ const App = () => {
       </Show>
       <GridItem area="main">
         <HStack justifyContent="space-between" pl="7px">
-
           <HStack spacing={5} mb={2} pl={2}>
             <PlatformSelector
               selectedPlatform={selectedPlatform}
               onSelectPlatform={(platform) => setSelectedPlatform(platform)}
             />
-            <SortSelector sortOrder={sortOrder} onSelectSortOrder={(sortOrder) => setSortOrder(sortOrder)}/>
+            <SortSelector
+              sortOrder={sortOrder}
+              onSelectSortOrder={(sortOrder) => setSortOrder(sortOrder)}
+            />
           </HStack>
           <Show above="lg">
             <Box mr={2} mb={2}>
@@ -69,6 +76,7 @@ const App = () => {
           selectedPlatform={selectedPlatform}
           columns={noOfCols}
           sortOrder={sortOrder}
+          searchText={searchText}
         />
       </GridItem>
     </Grid>
