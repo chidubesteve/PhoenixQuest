@@ -23,7 +23,7 @@ const GenreLists = ({ selectedGenre, onSelectGenre }: Props) => {
 
   return (
     <>
-      <Heading fontSize="2xl" marginBottom={3}>
+      <Heading fontSize="3xl" marginBottom={3} mt={8}>
         Genres
       </Heading>
       <List padding="0">
@@ -37,6 +37,7 @@ const GenreLists = ({ selectedGenre, onSelectGenre }: Props) => {
                     boxSize="46px"
                     src={getCroppedImageUrls(genre.image_background)}
                     alt={genre.name}
+                    objectFit='cover'
                   />
                   <Button
                     whiteSpace='normal'
